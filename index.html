@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Baby Gift 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Itim&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1:#fff1f6;
+  --bg2:#ffdbe8;
+  --card:#ffffff;
+  --popup:#fff7fb;
+  --text:#4a2433;
+  --accent:#ff9bb8;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:linear-gradient(180deg,var(--bg2),var(--bg1));
+  font-family:'Quicksand','Itim',sans-serif;
+  color:var(--text);
+}
+
+/* PAGE */
+.page{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:opacity .8s ease;
+}
+.page.scroll{
+  align-items:flex-start;
+  overflow-y:auto;
+  padding:40px 0;
+}
+.hidden{display:none}
+.fade-out{opacity:0}
+
+/* INTRO */
+.intro h1{
+  font-family:'Itim',cursive;
+  font-size:42px;
+  margin-bottom:16px;
+}
+.enter-btn{
+  padding:16px 42px;
+  border-radius:999px;
+  border:none;
+  background:var(--accent);
+  color:#fff;
+  font-size:18px;
+  font-family:'Itim',cursive;
+  cursor:pointer;
+}
+
+/* CARD */
+.card{
+  width:94%;
+  max-width:460px;
+  background:var(--card);
+  border-radius:36px;
+  padding:26px;
+  box-shadow:0 30px 70px rgba(0,0,0,.18);
+  animation:fadeUp 1.1s ease forwards;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:none}
+}
+
+/* PHOTO */
+.photo{
+  width:100%;
+  aspect-ratio:3/4;
+  border-radius:30px;
+  overflow:hidden;
+}
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 20%;
+}
+
+/* TITLE */
+.title{
+  margin-top:18px;
+  font-family:'Itim',cursive;
+  font-size:32px;
+  text-align:center;
+}
+.subtitle{
+  margin-top:6px;
+  text-align:center;
+  font-size:17px;
+  font-family:'Itim',cursive;
+  color:#c65a7c;
+}
+
+/* COUNTER */
+.counter{
+  margin-top:16px;
+  padding:16px;
+  border-radius:22px;
+  background:#fff0f6;
+  font-family:'Itim',cursive;
+  font-size:18px;
+  text-align:center;
+  color:#b14b6f;
+}
+
+/* MESSAGE */
+.message{
+  margin-top:20px;
+  padding:26px;
+  border-radius:28px;
+  background:#fff4f8;
+  font-size:16px;
+  line-height:2.1;
+}
+.message p{
+  margin:0 0 1.3em;
+}
+
+/* BUTTON */
+.popup-btn{
+  margin:26px auto 0;
+  display:block;
+  padding:14px 36px;
+  border-radius:999px;
+  border:none;
+  background:linear-gradient(135deg,#ffb6cc,#ff8fb3);
+  color:#fff;
+  font-size:16px;
+  font-family:'Itim',cursive;
+  cursor:pointer;
+}
+
+/* POPUP */
+.popup-bg{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.25);
+  backdrop-filter:blur(4px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .4s ease;
+  z-index:20;
+}
+.popup-bg.show{
+  opacity:1;
+  pointer-events:auto;
+}
+.popup{
+  background:var(--popup);
+  border-radius:32px;
+  padding:30px;
+  width:90%;
+  max-width:380px;
+  font-size:16px;
+  line-height:2.1;
+  box-shadow:0 30px 60px rgba(0,0,0,.25);
+  transform:scale(.88) translateY(20px);
+  opacity:0;
+  transition:all .45s ease;
+}
+.popup-bg.show .popup{
+  transform:scale(1) translateY(0);
+  opacity:1;
+}
+.popup p{
+  margin:0 0 1.3em;
+}
+.popup button{
+  margin:20px auto 0;
+  display:block;
+  padding:12px 34px;
+  border-radius:999px;
+  border:none;
+  background:var(--accent);
+  color:#fff;
+  font-family:'Itim',cursive;
+}
+
+/* HEART */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  z-index:5;
+  animation:floatUp linear infinite;
+  opacity:.5;
+}
+@keyframes floatUp{
+  to{transform:translateY(-120vh);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div class="page intro" id="intro">
+  <div style="text-align:center">
+    <h1>For My Baby 🤍</h1>
+    <button class="enter-btn" onclick="enter()">กดเข้ามานะเบบี๋</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="page hidden scroll" id="main">
+  <div class="card">
+
+    <div class="photo">
+      <img src="photo.jpeg" alt="Gift">
+    </div>
+
+    <div class="title">Happy New Year</div>
+    <div class="subtitle">ถึงภรรยาของเค้า 🤍</div>
+
+    <div class="counter" id="counter"></div>
+
+    <div class="message">
+      <p>
+        ปีที่ผ่านมานี้ อาจจะไม่ใช่ปีที่ง่ายที่สุดในชีวิตเรา  
+        มีทั้งวันที่ยิ้ม วันที่เหนื่อย และวันที่ไม่เข้าใจกันบ้าง
+      </p>
+
+      <p>
+        แต่ในทุกวันเหล่านั้น เค้าไม่เคยรู้สึกเลยว่า  
+        การมีเบบี๋อยู่ข้าง ๆ เป็นเรื่องที่ผิดพลาด  
+        ตรงกันข้าม มันคือเหตุผลที่ทำให้เค้ายังอยากพยายามในทุกวัน
+      </p>
+
+      <p>
+        ขอบคุณที่อยู่ ขอบคุณที่อดทน  
+        และขอบคุณที่ยังจับมือเค้าไว้  
+        แม้ในวันที่เค้าไม่เก่ง ไม่มั่นใจ  
+        และทำอะไรพลาดซ้ำ ๆ
+      </p>
+
+      <p>
+        ปีใหม่นี้ เค้าไม่ขออะไรจากชีวิตมากเลย  
+      </p>
+
+      <p>
+        ขอแค่ได้ตื่นมา แล้วยังมีเบบี๋อยู่ตรงนี้  
+        ได้คุย ได้หัวเราะ  
+        และได้ใช้ชีวิตธรรมดา ๆ ไปด้วยกันแบบนี้
+      </p>
+
+      <p>
+        แค่นั้น…  
+        เค้าก็มีความสุขมากพอแล้วจริง ๆ 🤍
+      </p>
+    </div>
+
+    <button class="popup-btn" onclick="openPopup()">อ่านข้อความจากใจเค้า 💌</button>
+
+  </div>
+</div>
+
+<!-- POPUP -->
+<div class="popup-bg" id="popup">
+  <div class="popup">
+    <p>
+      ถึงเบบี๋หีหอมของเค้า 🤍  
+      เค้าอาจไม่ใช่คนที่พูดเก่ง  
+      อาจไม่หวานทุกวัน  
+      และอาจไม่สมบูรณ์แบบอย่างที่ใครคาดหวัง
+    </p>
+
+    <p>
+      แต่ทุกครั้งที่เค้าคิดถึงอนาคต  
+      ทุกภาพที่เค้ามองเห็น  
+      มันมีเบบี๋อยู่ในนั้นเสมอ
+    </p>
+
+    <p>
+      เค้าสัญญาว่าจะดูแล ใส่ใจ  
+      และจะอยู่ข้าง ๆ  
+      ทั้งในวันที่ดี และวันที่ไม่ดี
+    </p>
+
+    <p>
+      ขอแค่ยังมีเบบี๋  
+      จับมือเค้าไว้แบบนี้  
+      ไม่ว่าจะผ่านไปกี่วัน กี่ปี  
+      เค้าก็ยังเลือกเบบี๋เหมือนเดิม 🤍
+    </p>
+
+    <button onclick="closePopup()">ปิด</button>
+  </div>
+</div>
+
+<audio id="bgm" src="music.mp3" loop></audio>
+
+<script>
+/* ENTER + MUSIC */
+const audio=document.getElementById("bgm");
+function enter(){
+  audio.volume=0;
+  audio.play();
+  let v=0;
+  const fade=setInterval(()=>{
+    v+=0.03;
+    audio.volume=v;
+    if(v>=1)clearInterval(fade);
+  },100);
+
+  intro.classList.add("fade-out");
+  setTimeout(()=>{
+    intro.classList.add("hidden");
+    main.classList.remove("hidden");
+  },800);
+}
+
+/* POPUP */
+const popup=document.getElementById("popup");
+function openPopup(){ popup.classList.add("show"); }
+function closePopup(){ popup.classList.remove("show"); }
+
+/* LOVE COUNTER – นับวัน */
+const startDate = new Date(2025,4,24); // แก้วันครบรอบจริง (เดือน-1)
+function updateCounter(){
+  const days = Math.floor((new Date()-startDate)/(1000*60*60*24));
+  counter.innerHTML = `เราคบกันมาแล้ว 🤍<br><b>${days}</b> วัน`;
+}
+setInterval(updateCounter,1000);
+updateCounter();
+
+/* HEART EFFECT */
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerText=["🤍","💗","✨"][Math.floor(Math.random()*3)];
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(8+Math.random()*6)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),15000);
+},700);
+</script>
+
+</body>
+</html>
